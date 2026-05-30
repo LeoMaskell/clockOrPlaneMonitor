@@ -1,0 +1,9 @@
+V1:
+TODO: what three words integraton
+TODO: login page
+TODO: payed plan?
+TODO: 
+
+V2:
+TODO: make true Line of sight
+TODO: improve clarity
