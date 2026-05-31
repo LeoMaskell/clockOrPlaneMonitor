@@ -3,7 +3,7 @@ from geopy.distance import geodesic
 
 
 # NOTE: all mesurements are metric
-
+# velocity is m/s - scalar - not true vector
 
 planes = requests.get("https://opensky-network.org/api/states/all").json() # get planes
 
@@ -26,8 +26,7 @@ def postcodeToLattLong(postCode):
         coords = (lookup["latitude"], lookup["longitude"])
         return coords
     except:
-        return LookupError
-        exit
+        return LookupError("invalid postcode") # TODO: add better error handling
     
 
 def in_radius(planes, coords, radius): # TODO: make the coords the w3w_addr
@@ -37,19 +36,24 @@ def in_radius(planes, coords, radius): # TODO: make the coords the w3w_addr
 
     for plane in planes:
         plane = parse_planes(plane)
-        if geo_dist((plane["latt"], plane["long"]), coords) < radius:
+        if geo_dist((plane["latt"], plane["long"]), coords) <= radius:
             planeLs.append(plane)
     return planeLs
 
 
-print(f"coords: {postcodeToLattLong('l24 1yd')}") # JLA airport for an example
+"""
+print(f"coords:     {postcodeToLattLong('l24 1yd')}") # JLA airport for an example
 print(in_radius(planes["states"], Liverpool, 5))
 
 
-"""
 print(planes.keys())
 print(f"example data: {planes["states"][0]}")
 
 
 print(parse_planes(planes["states"][0]))
 """
+
+
+postcode = input("enter postcode: \n")
+coords = postcodeToLattLong(postcode)
+print(f"there are {in_radius(planes["states"], coords, 5)} within 5 km")

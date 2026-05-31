@@ -1,8 +1,10 @@
 V1:
-TODO: login page
 TODO: make a filter for grounded planes to show up as grounded on the website
+TODO: TUI
 
 V2:
+TODO: GUI
+TODO: login page
 TODO: make true Line of sight
 TODO: improve clarity
 TODO: payed plan?
