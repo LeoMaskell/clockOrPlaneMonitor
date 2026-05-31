@@ -1,9 +1,9 @@
 V1:
-TODO: what three words integraton
 TODO: login page
-TODO: payed plan?
-TODO: 
+TODO: make a filter for grounded planes to show up as grounded on the website
 
 V2:
 TODO: make true Line of sight
 TODO: improve clarity
+TODO: payed plan?
+TODO: what three words integraton for payed plan # NOTE: the w3w api costs MONEY

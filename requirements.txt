@@ -5,3 +5,4 @@ geopy==2.4.1
 idna==3.17
 requests==2.34.2
 urllib3==2.7.0
+what3words==3.4.0

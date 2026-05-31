@@ -1,7 +1,9 @@
 import requests
 from geopy.distance import geodesic
- 
+
+
 # NOTE: all mesurements are metric
+
 
 planes = requests.get("https://opensky-network.org/api/states/all").json() # get planes
 
@@ -18,22 +20,30 @@ def parse_planes(plane):
 def geo_dist(pointA, pointB):
     return geodesic(pointA, pointB).km
 
+def postcodeToLattLong(postCode):
+    try:
+        lookup = requests.get(f"https://api.postcodes.io/postcodes/{postCode}").json()["result"]
+        coords = (lookup["latitude"], lookup["longitude"])
+        return coords
+    except:
+        return LookupError
+        exit
+    
 
 def in_radius(planes, coords, radius): # TODO: make the coords the w3w_addr
     # NOTE: coords is a tuple
     # NOTE: radius is in km
     planeLs = [] # list of planes (in dict form)
 
-
     for plane in planes:
         plane = parse_planes(plane)
         if geo_dist((plane["latt"], plane["long"]), coords) < radius:
-            print(plane)
-
-
+            planeLs.append(plane)
     return planeLs
 
-print(in_radius(planes["states"], Liverpool, 1))
+
+print(f"coords: {postcodeToLattLong('l24 1yd')}") # JLA airport for an example
+print(in_radius(planes["states"], Liverpool, 5))
 
 
 """
