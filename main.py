@@ -51,9 +51,11 @@ print(f"example data: {planes["states"][0]}")
 
 
 print(parse_planes(planes["states"][0]))
-"""
 
 
+
+# tui stuff
 postcode = input("enter postcode: \n")
 coords = postcodeToLattLong(postcode)
 print(f"there are {in_radius(planes["states"], coords, 5)} within 5 km")
+"""
