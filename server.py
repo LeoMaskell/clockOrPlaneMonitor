@@ -7,6 +7,9 @@ print(in_radius(planes["states"], Liverpool, 5))
 app = Flask(__name__)
 
 @app.route("/")
-def mainpage():
-    return f"<h1> hello world {planes["states"].json()}</h1>"
+def home():
+    return render_template('index.html')
 
+@app.route("/info.html")
+def info():
+    return render_template("info.html")
